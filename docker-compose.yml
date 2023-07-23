@@ -1,0 +1,15 @@
+version: "3" # versão do docker-compose
+services: # serviços que precisamos colocar em conteiner
+  # e um desses serviços é a nossa aplicação.
+  app: # nome da nossa aplicação, pode ser qualquer nome, nesse caso vamos dar o nome de app
+    build: 
+      context: . # context é o diretório onde a gente está
+    # command: "mix phx.server"
+    # command: tail -f /dev/null
+    tty: true
+    ports:
+      - '4000:4000'
+    volumes:
+        - '.:/var/www/html'
+    working_dir: /var/www/html
+    # network_mode: "host"

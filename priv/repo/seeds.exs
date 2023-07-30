@@ -9,3 +9,10 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias Sintonia.Accounts.User
+
+Sintonia.Repo.insert! %User{
+  email: "admin@sintonia.com",
+  hashed_password: Bcrypt.Base.hash_password("123", Bcrypt.Base.gen_salt(12, true)),
+}

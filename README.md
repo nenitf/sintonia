@@ -21,7 +21,7 @@ docker-compose exec app mix deps.get
 3. Execute as *migrations*
 
 ```sh
-mix ecto.migrate
+docker-compose exec app mix ecto.migrate
 ```
 
 4. Execute o *seeder*

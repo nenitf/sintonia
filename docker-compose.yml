@@ -10,6 +10,38 @@ services: # serviços que precisamos colocar em conteiner
     ports:
       - '4000:4000'
     volumes:
-        - '.:/var/www/html'
+      - '.:/var/www/html'
     working_dir: /var/www/html
+    network_mode: "host"
+    # networks:
+      # - main
+    depends_on:
+      - db # nosso app depende do db para funcionar
+    links:
+      - db
+    extra_hosts:
+      - "dockerhost:192.168.250.1"
+  db:
+    image: 'postgres:10'
+    ports:
+      - '${FORWARD_DB_PORT:-5432}:5432'
+    environment:
+      PGPASSWORD: '${DB_PASSWORD:-sintoniadbpwd}'
+      POSTGRES_DB: '${DB_DATABASE:-sintoniadb}'
+      POSTGRES_USER: '${DB_USERNAME:-sintoniausr}'
+      POSTGRES_PASSWORD: '${DB_PASSWORD:-sintoniapwd}'
+    volumes:
+      - 'main-pgsql:/var/lib/postgresql/data'
     # network_mode: "host"
+    # networks:
+      # - main
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}"]
+      retries: 3
+      timeout: 5s
+volumes:
+  main-pgsql:
+    driver: local
+
+networks:
+  main:

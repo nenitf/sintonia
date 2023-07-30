@@ -1,18 +1,27 @@
 # Sintonia
 
-To start your Phoenix server:
+## Desenvolvimento
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+### Ambiente
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+1. Inicie o ambiente
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+```sh
+docker-compose up -d
+```
 
-## Learn more
+> `docker-compose down` para encerrar
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+2. Baixe as dependências
+
+```sh
+mix deps.get
+```
+
+### Execução
+
+1. Após o ambiente configurado, inicie o servidor em `localhost:4000`
+
+```sh
+docker-compose exec app mix phx.server
+```

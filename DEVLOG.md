@@ -27,6 +27,16 @@ docker-compose up -d
 docker-compose exec app sh
 ```
 
+Caso queira mudar dados do banco precisa dropar o volume
+
+1. Mantenha o ambiente em execução
+2. `docker ps`
+3. Pare o ambiente `docker-compose down`
+4. Delete o container `docker rm <id>`
+5. `docker volume ls`
+6. Delete o volume `docker volume rm <id>`
+7. `docker compose up --build --force-recreate`
+
 ### Elixir
 
 ```sh

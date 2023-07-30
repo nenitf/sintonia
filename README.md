@@ -15,7 +15,13 @@ docker-compose up -d
 2. Baixe as dependências
 
 ```sh
-mix deps.get
+docker-compose exec app mix deps.get
+```
+
+3. Execute as *migrations*
+
+```sh
+mix ecto.migrate
 ```
 
 ### Execução
